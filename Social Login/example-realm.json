@@ -1,0 +1,86 @@
+{
+    "realm": "example",
+    "enabled": true,
+    "sslRequired": "external",
+    "registrationAllowed": true,
+    "requiredCredentials": [ "password" ],
+    "users" : [
+        {
+            "username" : "user",
+            "enabled": true,
+            "email" : "sample-user@example",
+            "firstName": "Sample",
+            "lastName": "User",
+            "credentials" : [
+                { "type" : "password",
+                  "value" : "user" }
+            ],
+            "realmRoles": [ "user" ],
+            "clientRoles": {
+                "account": ["view-profile", "manage-account"]
+            }
+        }
+    ],
+    "roles" : {
+        "realm" : [
+            {
+                "name": "user",
+                "description": "User privileges"
+            },
+            {
+                "name": "admin",
+                "description": "Administrator privileges"
+            }
+        ]
+    },
+    "scopeMappings": [
+        {
+            "client": "demoClient",
+            "roles": ["user"]
+        }
+    ],
+    "clients": [
+        {
+            "clientId": "demoClient",
+            "enabled": true,
+            "publicClient": true,
+            "baseUrl": "",
+            "redirectUris": [
+                "https://localhost:8443/*",
+				"https://localhost:8888/*"
+            ],
+            "webOrigins": ["*"]
+        }
+    ],
+    "clientScopeMappings": {
+        "account": [
+            {
+                "client": "demoClient",
+                "roles": ["view-profile"]
+            }
+        ]
+    },
+	 "identityProviders": [
+    {
+      "alias": "google",
+      "internalId": "5d6d9a59-6fdf-4f9f-8e9d-d0a89b028586",
+      "providerId": "google",
+      "enabled": true,
+      "updateProfileFirstLoginMode": "on",
+      "trustEmail": false,
+      "storeToken": false,
+      "addReadTokenRoleOnCreate": false,
+      "authenticateByDefault": false,
+      "linkOnly": false,
+      "firstBrokerLoginFlowAlias": "first broker login",
+      "config": {
+        "hideOnLoginPage": "",
+        "clientId": "1094501160264-uqlvv111jf0mrik7r7h68fu764r4kenh.apps.googleusercontent.com",
+        "disableUserInfo": "",
+        "userIp": "",
+        "clientSecret": "**********",
+        "useJwksUrl": "true"
+      }
+    }
+  ]
+}
